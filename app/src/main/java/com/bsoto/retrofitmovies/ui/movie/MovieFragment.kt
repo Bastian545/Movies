@@ -4,21 +4,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Adapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bsoto.retrofitmovies.R
 import com.bsoto.retrofitmovies.core.Resource
 import com.bsoto.retrofitmovies.data.model.Movie
-import com.bsoto.retrofitmovies.data.remote.MovieDataSource
+import com.bsoto.retrofitmovies.data.remote.RemoteMovieDataSource
 import com.bsoto.retrofitmovies.databinding.FragmentMovieBinding
-import com.bsoto.retrofitmovies.databinding.MovieItemBinding
 import com.bsoto.retrofitmovies.domainRepo.MovieRepositoryImp
 import com.bsoto.retrofitmovies.domainRepo.RetrofitClient
-import com.bsoto.retrofitmovies.domainRepo.WebService
 import com.bsoto.retrofitmovies.presentation.MovieViewModel
 import com.bsoto.retrofitmovies.presentation.MovieViewModelFactory
 import com.bsoto.retrofitmovies.ui.movie.adapters.MovieAdapter
@@ -32,7 +28,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private val viewModel by viewModels<MovieViewModel> {
         MovieViewModelFactory(
             MovieRepositoryImp(
-                MovieDataSource(RetrofitClient.webservice)
+                RemoteMovieDataSource(RetrofitClient.webservice)
             )
         )
     }

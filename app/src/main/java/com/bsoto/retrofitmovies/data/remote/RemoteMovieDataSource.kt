@@ -4,7 +4,7 @@ import com.bsoto.retrofitmovies.data.model.MovieList
 import com.bsoto.retrofitmovies.domainRepo.WebService
 import com.bsoto.retrofitmovies.utils.AppConstants
 
-class MovieDataSource(private val webService: WebService) {
+class RemoteMovieDataSource(private val webService: WebService) {
 
     suspend fun getUpcomingMovies(): MovieList = webService.getUpcomingMovies(AppConstants.API_KEY)
 
